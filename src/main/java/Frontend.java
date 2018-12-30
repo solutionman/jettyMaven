@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Frontend extends HttpServlet {
-    //private String login = '';
+    private String login = "authform";
 
     public void doGet(HttpServletRequest request,
                        HttpServletResponse response)
