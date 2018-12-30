@@ -9,7 +9,7 @@ public class Main {
         Server server = new Server(8080);
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         server.setHandler(context);
-        context.addServlet(new ServletHolder(frontend),"/authform");
+        context.addServlet(new ServletHolder(frontend),"/*");
 
         try {
             server.start();
