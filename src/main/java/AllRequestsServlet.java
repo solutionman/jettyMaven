@@ -41,6 +41,7 @@ public class AllRequestsServlet extends HttpServlet {
         pageVariables.put("message", message == null ? "" : message);
 
         response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
+        //response.getWriter().println(request.getParameter("message"));
 
         response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
