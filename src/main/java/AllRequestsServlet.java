@@ -14,33 +14,22 @@ public class AllRequestsServlet extends HttpServlet {
 
         Map<String, Object> pageVariables = createPageVariablesMap(request);
 
-        //String message = request.getParameter("parameters");
         pageVariables.put("parameters", request.getParameterMap().toString());
 
-        //String message = pageVariables.toString();
         String message = "";
 
         String query = request.getParameterMap().toString();
+        Map<String, String> map = new HashMap<String, String>();
         if(query.length() > 0){
             String[] params = query.split("&");
-            Map<String, String> map = new HashMap<String, String>();
+
             for(String param : params){
                 String name = param.split("=")[0];
                 String value = param.split("=")[1];
                 map.put(name, value);
-                pageVariables.put(name, value);
-                message = param.split("=")[1];
+                message = value.substring(1,value.length() - 2);
             }
         }
-
-
-
-        if(pageVariables.containsKey("key")) System.out.println(1);
-
-        String[] messageArray = message.split("\\?");
-
-
-        //pageVariables.put("message", message);
 
         response.setContentType("text/html;charset=utf-8");
 
