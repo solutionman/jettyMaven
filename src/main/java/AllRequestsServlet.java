@@ -13,7 +13,26 @@ public class AllRequestsServlet extends HttpServlet {
                       HttpServletResponse response) throws ServletException, IOException {
 
         Map<String, Object> pageVariables = createPageVariablesMap(request);
-        pageVariables.put("message", "");
+
+        //String message = request.getParameter("parameters");
+        pageVariables.put("parameters", request.getParameterMap().toString());
+        String message = pageVariables.toString();
+
+        if(pageVariables.containsKey("key")) System.out.println(1);
+
+        String[] messageArray = message.split("\\?");
+
+
+        pageVariables.put("message", message);
+
+        response.setContentType("text/html;charset=utf-8");
+
+        if (message == null ) {
+            response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+        } else {
+            response.setStatus(HttpServletResponse.SC_OK);
+        }
+        pageVariables.put("message", message == null ? "" : message);
 
         response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
 
